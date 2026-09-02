@@ -54,3 +54,25 @@ function validateUsername(username) {
         return "Available";
     }
 }
+
+
+
+
+function getCngFare(distance, isNight = false, waitingMinutes = 0) {
+    let minimumFare = 50;
+    let nightFare = 0;
+    let waitingFare = 0;
+
+    if (distance > 2) {
+        minimumFare += (distance - 2) * 15;
+    }
+
+    if (waitingMinutes > 0) {
+        waitingFare = waitingFare + waitingMinutes * 2;
+    }
+
+    if (isNight === true) {
+        nightFare = (minimumFare + waitingFare) * 0.2;
+    }
+
+    return minimumFare + nightFare + waitingFare;
