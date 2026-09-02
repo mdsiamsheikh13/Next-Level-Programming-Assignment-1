@@ -302,30 +302,139 @@
 
 // ----------------------------------------------------------Solution------------------------------------------
 
-function getCngFare(distance, isNight=false, waitingMinutes=0){
-    let minimumFare = 50;
-    let nightFare = 0;
-    let waitingFare = 0;
+// function getCngFare(distance, isNight=false, waitingMinutes=0){
+//     let minimumFare = 50;
+//     let nightFare = 0;
+//     let waitingFare = 0;
 
-    if(distance>2){
-         minimumFare += (distance-2) * 15;
+//     if(distance>2){
+//          minimumFare += (distance-2) * 15;
+//     }
+
+//     if(waitingMinutes>0){
+//         waitingFare = waitingFare + waitingMinutes*2
+//     }
+
+//     if(isNight === true){
+//         nightFare = (minimumFare + waitingFare) *.20;
+//     }
+
+//     return minimumFare+nightFare+waitingFare;
+// }
+
+// console.log(getCngFare(2));
+// console.log(getCngFare(1));
+// console.log(getCngFare(5));
+// console.log(getCngFare(10));
+// console.log(getCngFare(5, false, 10));
+// console.log(getCngFare(5, true));
+// console.log(getCngFare(5, true,10));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Question 5: Run Chase Commentator · 15 marks
+// Write an arrow function getChaseVerdict(target, scored, ballsLeft) for a cricket run chase.
+
+// Steps:
+
+// runsNeeded = target - scored
+
+// If runsNeeded is 0 or less, the match is already won → return "Won"
+
+// Otherwise, if ballsLeft is 0 or less, there is no ball left to score → return "Lost"
+
+// Otherwise, work out the required run rate:
+
+// requiredRate = (runsNeeded / ballsLeft) * 6
+// Pick the verdict from the rate:
+
+// Required rate	Verdict
+// 6 or less	"Comfortable"
+// more than 6, up to 12	"Tough"
+// more than 12	"Almost Impossible"
+// Return this exact sentence:
+
+// Need <runsNeeded> runs in <ballsLeft> balls | <verdict>
+// Always write runs and balls, even when the number is 1.
+
+// Call	Returns
+// getChaseVerdict(200, 200, 12)	"Won"
+// getChaseVerdict(200, 190, 0)	"Lost"
+// getChaseVerdict(100, 90, 12)	"Need 10 runs in 12 balls | Comfortable"
+// getChaseVerdict(100, 80, 12)	"Need 20 runs in 12 balls | Tough"
+// getChaseVerdict(100, 70, 12)	"Need 30 runs in 12 balls | Almost Impossible"
+// getChaseVerdict(150, 149, 1)	"Need 1 runs in 1 balls | Comfortable"
+// Hint: use a template string for the sentence. Write it as const getChaseVerdict = (target, scored, ballsLeft) => { ... };
+
+// -------------------------------------Solution-----------------------------------------
+
+// const getChaseVerdict=(target, scored, ballsLeft)=>{
+//     let runsNeeded = target - scored;
+//     let requiredRate = 0;
+//     if(runsNeeded > 0 && ballsLeft > 0){
+//         requiredRate = (runsNeeded / ballsLeft) * 6;
+//     }
+//     const requireResult = (requiredRate<=6)? "Comfortable" : requiredRate<=12 ? "Tough" : "Almost Impossible"
+        
+//     const matchResult = (runsNeeded<=0)? "Won" : ballsLeft <= 0? "Lost" : `Need ${runsNeeded} runs in ${ballsLeft} balls | ${requireResult}`;
+//     // requiredRate = (runsNeeded / ballsLeft) * 6;
+
+//     return matchResult;
+// };
+
+
+const getChaseVerdict = (target, scored, ballsLeft) => {
+    let runsNeeded = target - scored;
+
+    if (runsNeeded <= 0) {
+        return "Won";
     }
 
-    if(waitingMinutes>0){
-        waitingFare = waitingFare + waitingMinutes*2
+    if (ballsLeft <= 0) {
+        return "Lost";
     }
 
-    if(isNight === true){
-        nightFare = (minimumFare + waitingFare) *.20;
-    }
+    let requiredRate = (runsNeeded / ballsLeft) * 6;
 
-    return minimumFare+nightFare+waitingFare;
-}
+    const requireResult = (requiredRate<=6)? "Comfortable" : requiredRate<=12 ? "Tough" : "Almost Impossible"
 
-console.log(getCngFare(2));
-console.log(getCngFare(1));
-console.log(getCngFare(5));
-console.log(getCngFare(10));
-console.log(getCngFare(5, false, 10));
-console.log(getCngFare(5, true));
-console.log(getCngFare(5, true,10));
+    return `Need ${runsNeeded} runs in ${ballsLeft} balls | ${requireResult}`;
+};
+
+
+
+console.log(getChaseVerdict(10,10,5));
+console.log(getChaseVerdict(200, 190, 0));
+console.log(getChaseVerdict(100, 90, 12));
+console.log(getChaseVerdict(100, 80, 12));
+console.log(getChaseVerdict(100, 70, 12));
+console.log(getChaseVerdict(150, 149, 1));

@@ -10,11 +10,11 @@ function checkTruthyFalsy(value) {
     } else {
         return "falsy";
     }
-}
+};
 
 function describeValue(value) {
     return `${typeOfValue(value)} | ${checkTruthyFalsy(value)}`;
-}
+};
 
 
 
@@ -35,7 +35,7 @@ function getDayType(day) {
     default:
         return "Invalid Day";
     }
-}
+};
 
 
 
@@ -53,10 +53,11 @@ function validateUsername(username) {
     } else {
         return "Available";
     }
-}
+};
 
 
 
+// Question 4: Dhaka CNG Fare Meter
 
 function getCngFare(distance, isNight = false, waitingMinutes = 0) {
     let minimumFare = 50;
@@ -76,3 +77,27 @@ function getCngFare(distance, isNight = false, waitingMinutes = 0) {
     }
 
     return minimumFare + nightFare + waitingFare;
+};
+
+
+
+// Question 5: Run Chase Commentator
+
+const getChaseVerdict = (target, scored, ballsLeft) => {
+    let runsNeeded = target - scored;
+
+    if (runsNeeded <= 0) {
+        return "Won";
+    }
+
+    if (ballsLeft <= 0) {
+    return "Lost";
+    }
+
+  let requiredRate = (runsNeeded / ballsLeft) * 6;
+
+    const requireResult = (requiredRate<=6)? "Comfortable" : requiredRate<=12 ? "Tough" : "Almost Impossible";
+
+    return `Need ${runsNeeded} runs in ${ballsLeft} balls | ${requireResult}`;
+};
+
